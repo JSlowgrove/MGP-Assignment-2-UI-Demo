@@ -2,8 +2,8 @@
 
 #include <SDL.h>
 #include <string.h>
-#include "JAM/Texture.h"
-#include "JAM/Button.h"
+#include "Texture.h"
+#include "Button.h"
 
 /**
 @brief Creates an ArrowPad object.

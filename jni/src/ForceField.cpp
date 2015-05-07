@@ -26,16 +26,16 @@ ForceField::~ForceField()
 /*A function that updates the ForceField.*/
 void ForceField::update(float dt)
 {
-	/*A variable for the update x position of the background*/
+	/*A variable for the update x position of the ForceField*/
 	float updatedX = getPosition().x - (velocity * dt);
 
-	/*If the background is off the screen*/
+	/*If the ForceField is off the screen*/
 	if (updatedX + getDimensions().x < 0.0f)
 	{
-		/*reset the position of the background*/
+		/*reset the position of the ForceField*/
 		updatedX += screenWidth + getDimensions().x;
 	}
 
-	/*update the position of the background*/
+	/*update the position of the ForceField*/
 	setX(updatedX);
 }

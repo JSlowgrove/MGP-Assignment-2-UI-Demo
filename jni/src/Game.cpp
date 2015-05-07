@@ -51,17 +51,25 @@ Game::Game(JAM_StateManager * stateManager, SDL_Renderer* renderer, int screenWi
 	particleEffects.push_back(new JAM_ParticleEffect(player->getPosition() + offest, true, renderer, 255, 0, 255, screenHeight));
 
 	/*initialise the force fields*/
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		/*create the force field entity*/
-		forceFields.push_back(new ForceField(forceField, (JAM_Utilities::scaleNumber(180.0f, screenHeight) * i), 
+		forceFields.push_back(
+			new ForceField(
+			forceField, 
+			(screenWidth * 0.5f - JAM_Utilities::scaleNumber(50.0f, screenHeight)) * i,
 			((i % 2) * (screenHeight - JAM_Utilities::scaleNumber(300.0f, screenHeight))),
-			JAM_Utilities::scaleNumber(50.0f, screenHeight), JAM_Utilities::scaleNumber(300.0f, screenHeight),
-			JAM_Utilities::scaleNumber(50.0f, screenHeight), (float)screenWidth, (float)screenHeight));
+			JAM_Utilities::scaleNumber(50.0f, screenHeight), 
+			JAM_Utilities::scaleNumber(300.0f, screenHeight),
+			JAM_Utilities::scaleNumber(50.0f, screenHeight), 
+			(float)screenWidth, 
+			(float)screenHeight
+			)
+			);
 	}
 
-	/*initialise the bool for the first loop*/
-	initalLoop = true;
+	/*initialise the number of initial loops*/
+	initalLoops = 2;
 
 	/*initialise the text*/
 	info = new JAM_Text("Hit SPACE to pause", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(25.0f, screenHeight),
@@ -198,7 +206,7 @@ bool Game::androidInput(SDL_Event& incomingEvent)
 	}
 
 	/*if the button is pressed go to the pause screen*/
-	if (button->input(incomingEvent))
+	if (button->tapInput(incomingEvent))
 	{
 		/*add the pause state*/
 		stateManager->addState(new PauseState(stateManager, renderer, screenWidth, screenHeight, music));
@@ -211,12 +219,15 @@ bool Game::androidInput(SDL_Event& incomingEvent)
 /*updates the game*/
 void Game::update(float dt)
 {
-	/*if the initial loop*/
-	if (initalLoop)
+	/*if the initial loops*/
+	if (initalLoops > 0)
 	{
-		/*add the pause state*/
-		stateManager->addState(new PauseState(stateManager, renderer, screenWidth, screenHeight, music));
-		initalLoop = false;
+		if (initalLoops > 1)
+		{
+			/*add the pause state*/
+			stateManager->addState(new PauseState(stateManager, renderer, screenWidth, screenHeight, music));
+		}
+		initalLoops--;
 	}
 
 	/*keep the music playing*/

@@ -118,7 +118,7 @@ bool PauseState::androidInput(SDL_Event& incomingEvent)
 	}
 	
 	/*if the button is pressed return to the game*/
-	if (button->input(incomingEvent))
+	if (button->tapInput(incomingEvent))
 	{
 		/*return to the game*/
 		stateManager->removeLastState();

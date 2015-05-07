@@ -11,7 +11,7 @@
 #include "JAM/ParticleEffect.h"
 #include "JAM/CollisionDetection.h"
 #include "JAM/Button.h"
-#include "ArrowPad.h"
+#include "JAM/ArrowPad.h"
 #include "Background.h"
 #include "Player.h"
 #include "ForceField.h"
@@ -40,8 +40,8 @@ private:
 	std::vector<ForceField*> forceFields;
 	/**A pointer to the background music*/
 	JAM_Audio* music;
-	/**A bool for the initial loop*/
-	bool initalLoop;
+	/**A number for the initial loops left*/
+	int initalLoops;
 	/**The info Text*/
 	JAM_Text* info;
 	/**The info Button*/

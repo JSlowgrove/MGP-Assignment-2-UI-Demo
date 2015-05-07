@@ -11,11 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ArrowPad.cpp" />
     <ClCompile Include="src\Background.cpp" />
     <ClCompile Include="src\ForceField.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameOver.cpp" />
+    <ClCompile Include="src\JAM\ArrowPad.cpp" />
     <ClCompile Include="src\JAM\AStar.cpp" />
     <ClCompile Include="src\JAM\Audio.cpp" />
     <ClCompile Include="src\JAM\Button.cpp" />
@@ -36,11 +36,11 @@
     <ClCompile Include="src\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\ArrowPad.h" />
     <ClInclude Include="src\Background.h" />
     <ClInclude Include="src\ForceField.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\GameOver.h" />
+    <ClInclude Include="src\JAM\ArrowPad.h" />
     <ClInclude Include="src\JAM\AStar.h" />
     <ClInclude Include="src\JAM\Audio.h" />
     <ClInclude Include="src\JAM\Button.h" />

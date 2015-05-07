@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include "JAM/Entity.h"
-#include "ArrowPad.h"
+#include "JAM/ArrowPad.h"
 
 /**
 @brief Creates a Player object that inherits Entity.

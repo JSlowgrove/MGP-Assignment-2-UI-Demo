@@ -90,8 +90,8 @@
     <ClCompile Include="src\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ArrowPad.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\JAM\ArrowPad.cpp">
+      <Filter>JAM Files\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -161,8 +161,8 @@
     <ClInclude Include="src\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ArrowPad.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\JAM\ArrowPad.h">
+      <Filter>JAM Files\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

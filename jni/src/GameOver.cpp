@@ -118,7 +118,7 @@ bool GameOver::androidInput(SDL_Event& incomingEvent)
 	}
 
 	/*if the button is pressed restart the game*/
-	if (button->input(incomingEvent))
+	if (button->tapInput(incomingEvent))
 	{
 		/*restart the game*/
 		stateManager->changeState(new Game(stateManager, renderer, screenWidth, screenHeight));

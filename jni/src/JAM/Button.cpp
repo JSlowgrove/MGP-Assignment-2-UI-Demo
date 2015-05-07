@@ -116,6 +116,43 @@ bool JAM_Button::input(SDL_Event& incomingEvent)
 
 /**************************************************************************************************************/
 
+/*Handles the input for the button.*/
+bool JAM_Button::tapInput(SDL_Event& incomingEvent)
+{
+	/*a vec2 for testing the touch position*/
+	JAM_Vec2 touchPosition;
+
+	/*get the touch position*/
+	touchPosition.x = ((float)incomingEvent.motion.x);
+	touchPosition.y = ((float)incomingEvent.motion.y);
+
+	/*a ternary operator checking if the touch position is above the button*/
+	bool overButton = (touchPosition.x > getPosition().x && touchPosition.x < getPosition().x + getDimensions().x
+		&& touchPosition.y > getPosition().y && touchPosition.y < getPosition().y + getDimensions().y) ? 1 : 0;
+
+	switch (incomingEvent.type)
+	{
+	case SDL_MOUSEBUTTONDOWN: /*If pressed*/
+
+		/*if the left mouse button*/
+		if (incomingEvent.button.button == SDL_BUTTON_LEFT)
+		{
+			/*if the position is above the button*/
+			if (overButton)
+			{
+				/*the button is tapped*/
+				return true;
+			}
+		}
+		break;
+	}
+
+	/*the button is not tapped*/
+	return false;
+}
+
+/**************************************************************************************************************/
+
 /*Draws the Button text to the screen.*/
 void JAM_Button::drawText(SDL_Renderer* renderer)
 {
