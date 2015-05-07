@@ -14,23 +14,28 @@ Game::Game(JAM_StateManager * stateManager, SDL_Renderer* renderer, int screenWi
 	forceField = new JAM_Texture("img/forceField.png", renderer);
 
 	/*initialise the backgrounds*/
-	starsA = new Background(backgroundStars, 0.0f, 0.0f, (float)screenWidth, (float)screenHeight, 20.0f);
-	starsB = new Background(backgroundStars, (float)screenWidth, 0.0f, (float)screenWidth, (float)screenHeight, 20.0f);
+	starsA = new Background(backgroundStars, JAM_Utilities::scaleNumber(0.0f, screenHeight), JAM_Utilities::scaleNumber(0.0f, screenHeight), 
+		(float)screenWidth, (float)screenHeight, JAM_Utilities::scaleNumber(20.0f, screenHeight));
+	starsB = new Background(backgroundStars, (float)screenWidth, JAM_Utilities::scaleNumber(0.0f, screenHeight), 
+		(float)screenWidth, (float)screenHeight, JAM_Utilities::scaleNumber(20.0f, screenHeight));
 
 	/*initialise the player*/
-	player = new Player(alienDude, 100.0f, 100.0f, 64.0f, 64.0f, JAM_Vec2(100.0f, 100.0f), (float)screenWidth, (float)screenHeight);
+	player = new Player(alienDude, 
+		JAM_Utilities::scaleNumber(100.0f, screenHeight), JAM_Utilities::scaleNumber(100.0f, screenHeight),
+		JAM_Utilities::scaleNumber(64.0f, screenHeight), JAM_Utilities::scaleNumber(64.0f, screenHeight), 
+		JAM_Utilities::scaleVector(JAM_Vec2(100.0f, 100.0f), screenHeight), (float)screenWidth, (float)screenHeight);
 
 	/*initialise the particle effect for the player*/
 	particleEffects.push_back(new JAM_ParticleEffect(player->getPosition(), true, renderer, 255, 0, 255, screenHeight));
 
 	/*create an offset for the particle effect*/
-	JAM_Vec2 offest = JAM_Vec2(0.0f, player->getDimensions().y);
+	JAM_Vec2 offest = JAM_Vec2(JAM_Utilities::scaleNumber(0.0f, screenHeight), player->getDimensions().y);
 
 	/*initialise the particle effect for the player*/
 	particleEffects.push_back(new JAM_ParticleEffect(player->getPosition() + offest, true, renderer, 255, 0, 255, screenHeight));
 
 	/*create an offset for the particle effect*/
-	offest = JAM_Vec2(player->getDimensions().x, 0.0f);
+	offest = JAM_Vec2(player->getDimensions().x, JAM_Utilities::scaleNumber(0.0f, screenHeight));
 
 	/*initialise the particle effect for the player*/
 	particleEffects.push_back(new JAM_ParticleEffect(player->getPosition() + offest, true, renderer, 255, 0, 255, screenHeight));
@@ -45,8 +50,10 @@ Game::Game(JAM_StateManager * stateManager, SDL_Renderer* renderer, int screenWi
 	for (int i = 0; i < 4; i++)
 	{
 		/*create the force field entity*/
-		forceFields.push_back(new ForceField(forceField, (180.0f * i), ((i % 2) * (screenHeight - 300.0f)),
-			50.0f, 300.0f, 50.0f, (float)screenWidth, (float)screenHeight));
+		forceFields.push_back(new ForceField(forceField, (JAM_Utilities::scaleNumber(180.0f, screenHeight) * i), 
+			((i % 2) * (screenHeight - JAM_Utilities::scaleNumber(300.0f, screenHeight))),
+			JAM_Utilities::scaleNumber(50.0f, screenHeight), JAM_Utilities::scaleNumber(300.0f, screenHeight),
+			JAM_Utilities::scaleNumber(50.0f, screenHeight), (float)screenWidth, (float)screenHeight));
 	}
 
 	/*initialise the bool for the first loop*/
@@ -226,14 +233,14 @@ void Game::update(float dt)
 	particleEffects[0]->update(dt);
 
 	/*create an offset for the particle effect*/
-	JAM_Vec2 offest = JAM_Vec2(0.0f, player->getDimensions().y);
+	JAM_Vec2 offest = JAM_Vec2(JAM_Utilities::scaleNumber(0.0f, screenHeight), player->getDimensions().y);
 
 	/*update the particle effect*/
 	particleEffects[1]->setEmitter(player->getPosition() + offest);
 	particleEffects[1]->update(dt);
 
 	/*create an offset for the particle effect*/
-	offest = JAM_Vec2(player->getDimensions().x, 0.0f);
+	offest = JAM_Vec2(player->getDimensions().x, JAM_Utilities::scaleNumber(0.0f, screenHeight));
 
 	/*update the particle effect*/
 	particleEffects[2]->setEmitter(player->getPosition() + offest);

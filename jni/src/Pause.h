@@ -7,6 +7,7 @@
 #include "JAM/Texture.h"
 #include "JAM/Audio.h"
 #include "JAM/Text.h"
+#include "JAM/Utilities.h"
 
 /**
 @brief Creates an pause object that inherits State and runs the pause state.

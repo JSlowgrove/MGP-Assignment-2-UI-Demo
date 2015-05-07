@@ -11,7 +11,8 @@ GameOver::GameOver(JAM_StateManager * stateManager, SDL_Renderer* renderer, int 
 	background = new JAM_Texture("img/backgroundOverlay.png", renderer);
 
 	/*initialise the text*/
-	info = new JAM_Text("Hit SPACE to restart", "font/Underdog_tt_hinted.ttf", 48, renderer, 255, 255, 255);
+	info = new JAM_Text("Hit SPACE to restart", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(48.0f, screenHeight), 
+		renderer, 255, 255, 255);
 
 	/*initialise the music*/
 	this->music = music;
@@ -134,8 +135,9 @@ void GameOver::update(float dt)
 void GameOver::draw()
 {
 	/*draw the background*/
-	background->pushToScreen(renderer, 0, 0);
+	background->pushToScreen(renderer, (int)JAM_Utilities::scaleNumber(0.0f, screenHeight), 
+		(int)JAM_Utilities::scaleNumber(0.0f, screenHeight), screenWidth, screenHeight);
 
 	/*draw the text*/
-	info->pushToScreen(120, 50);
+	info->pushToScreen((int)JAM_Utilities::scaleNumber(120.0f, screenHeight), (int)JAM_Utilities::scaleNumber(50.0f, screenHeight));
 }
