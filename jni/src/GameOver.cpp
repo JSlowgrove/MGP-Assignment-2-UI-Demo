@@ -14,6 +14,14 @@ GameOver::GameOver(JAM_StateManager * stateManager, SDL_Renderer* renderer, int 
 	info = new JAM_Text("Hit SPACE to restart", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(48.0f, screenHeight), 
 		renderer, 255, 255, 255);
 
+	/*initialise the button*/
+	button = new JAM_Button(new JAM_Texture("img/buttonBackground.png", renderer), JAM_Utilities::scaleNumber(140.0f, screenHeight),
+		JAM_Utilities::scaleNumber(50.0f, screenHeight),
+		"Press to restart", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(48.0f, screenHeight),
+		255, 255, 255, renderer,
+		JAM_Utilities::scaleNumber(25.0f, screenHeight),
+		JAM_Utilities::scaleNumber(100.0f, screenHeight), JAM_Utilities::scaleNumber(50.0f, screenHeight));
+
 	/*initialise the music*/
 	this->music = music;
 }
@@ -106,16 +114,13 @@ bool GameOver::androidInput(SDL_Event& incomingEvent)
 			break;
 		}
 		break;
+	}
 
-	case SDL_MOUSEBUTTONDOWN: /*If the mouse is pressed*/
-
-		/*if the left mouse button restart the game*/
-		if (incomingEvent.button.button == SDL_BUTTON_LEFT)
-		{
-			/*restart the game*/
-			stateManager->changeState(new Game(stateManager, renderer, screenWidth, screenHeight));
-		}
-		break;
+	/*if the button is pressed restart the game*/
+	if (button->input(incomingEvent))
+	{
+		/*restart the game*/
+		stateManager->changeState(new Game(stateManager, renderer, screenWidth, screenHeight));
 	}
 	return true;
 }
@@ -138,6 +143,16 @@ void GameOver::draw()
 	background->pushToScreen(renderer, (int)JAM_Utilities::scaleNumber(0.0f, screenHeight), 
 		(int)JAM_Utilities::scaleNumber(0.0f, screenHeight), screenWidth, screenHeight);
 
+#ifdef __ANDROID__
+
+	/*draw the button*/
+	button->draw(renderer);
+	button->drawText(renderer);
+
+#elif _WIN32	
+
 	/*draw the text*/
 	info->pushToScreen((int)JAM_Utilities::scaleNumber(120.0f, screenHeight), (int)JAM_Utilities::scaleNumber(50.0f, screenHeight));
+
+#endif
 }

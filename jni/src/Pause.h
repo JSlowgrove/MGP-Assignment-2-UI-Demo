@@ -8,6 +8,7 @@
 #include "JAM/Audio.h"
 #include "JAM/Text.h"
 #include "JAM/Utilities.h"
+#include "JAM/Button.h"
 
 /**
 @brief Creates an pause object that inherits State and runs the pause state.
@@ -19,6 +20,8 @@ private:
 	JAM_Texture* background;
 	/**The info Text*/
 	JAM_Text* info;
+	/**The info Button*/
+	JAM_Button* button;
 	/**A pointer to the background music*/
 	JAM_Audio* music;
 

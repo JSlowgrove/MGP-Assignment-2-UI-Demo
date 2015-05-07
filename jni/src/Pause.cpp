@@ -12,6 +12,14 @@ PauseState::PauseState(JAM_StateManager * stateManager, SDL_Renderer* renderer, 
 	/*initialise the text*/
 	info = new JAM_Text("Hit SPACE to play", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(48.0f, screenHeight), 
 		renderer, 255, 255, 255);
+
+	/*initialise the button*/
+	button = new JAM_Button(new JAM_Texture("img/buttonBackground.png", renderer), JAM_Utilities::scaleNumber(140.0f, screenHeight), 
+		JAM_Utilities::scaleNumber(50.0f, screenHeight),
+		"Press to play", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(48.0f, screenHeight), 
+		255, 255, 255, renderer, 
+		JAM_Utilities::scaleNumber(25.0f, screenHeight), 
+		JAM_Utilities::scaleNumber(100.0f, screenHeight), JAM_Utilities::scaleNumber(50.0f, screenHeight));
 	
 	/*initialise the music*/
 	this->music = music;
@@ -105,16 +113,13 @@ bool PauseState::androidInput(SDL_Event& incomingEvent)
 			break;
 		}
 		break;
-
-	case SDL_MOUSEBUTTONDOWN: /*If the mouse is pressed*/
-
-		/*if the left mouse button return to the game*/
-		if (incomingEvent.button.button == SDL_BUTTON_LEFT)
-		{
-			/*return to the game*/
-			stateManager->removeLastState();
-		}
-		break;
+	}
+	
+	/*if the button is pressed return to the game*/
+	if (button->input(incomingEvent))
+	{
+		/*return to the game*/
+		stateManager->removeLastState();
 	}
 	return true;
 }
@@ -138,6 +143,16 @@ void PauseState::draw()
 	background->pushToScreen(renderer, (int)JAM_Utilities::scaleNumber(0.0f, screenHeight),
 		(int)JAM_Utilities::scaleNumber(0.0f, screenHeight), screenWidth, screenHeight);
 
+#ifdef __ANDROID__
+
+	/*draw the button*/
+	button->draw(renderer);
+	button->drawText(renderer);
+
+#elif _WIN32	
+
 	/*draw the text*/
 	info->pushToScreen((int)JAM_Utilities::scaleNumber(140.0f, screenHeight), (int)JAM_Utilities::scaleNumber(50.0f, screenHeight));
+
+#endif
 }
