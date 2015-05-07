@@ -41,22 +41,83 @@ bool PauseState::input()
 
 			return false;
 			break;
-
-		case SDL_KEYDOWN:
-
-			switch (incomingEvent.key.keysym.sym)
-			{
-			case SDLK_SPACE: /*If Space is pressed, return to the game*/
-
-				/*return to the game*/
-				stateManager->removeLastState();
-				break;
-			}
-			break;
 		}
+#ifdef __ANDROID__
+
+		/*handle the android inputs*/
+		return androidInput(incomingEvent);
+
+#elif _WIN32	
+
+		/*handle the windows inputs*/
+		return windowsInput(incomingEvent);
+
+#endif
+
 	}
 	return true;
 }
+
+/**************************************************************************************************************/
+
+/*handles windows inputs*/
+bool PauseState::windowsInput(SDL_Event& incomingEvent)
+{
+	switch (incomingEvent.type)
+	{
+	case SDL_KEYDOWN:
+
+		switch (incomingEvent.key.keysym.sym)
+		{
+		case SDLK_ESCAPE: /*If Escape is pressed, end the game loop*/
+
+			SDL_Log("Exiting Main Loop");
+			return false;
+			break;
+
+		case SDLK_SPACE:  /*If Space is pressed, return to the game*/
+
+			/*return to the game*/
+			stateManager->removeLastState();
+			break;
+		}
+		break;
+	}
+	return true;
+}
+
+/**************************************************************************************************************/
+
+/*handles android inputs*/
+bool PauseState::androidInput(SDL_Event& incomingEvent)
+{
+	switch (incomingEvent.type)
+	{
+	case SDL_KEYDOWN:
+
+		switch (incomingEvent.key.keysym.sym)
+		{
+		case SDLK_AC_BACK: /*If Back is pressed on the phone, end the game loop*/
+
+			SDL_Log("Exiting Main Loop");
+			return false;
+			break;
+		}
+		break;
+
+	case SDL_MOUSEBUTTONDOWN: /*If the mouse is pressed*/
+
+		/*if the left mouse button return to the game*/
+		if (incomingEvent.button.button == SDL_BUTTON_LEFT)
+		{
+			/*return to the game*/
+			stateManager->removeLastState();
+		}
+		break;
+	}
+	return true;
+}
+
 
 /**************************************************************************************************************/
 

@@ -28,6 +28,24 @@ Player::~Player()
 /*A function that handles the input for the Player.*/
 void Player::input(SDL_Event incomingEvent)
 {
+#ifdef __ANDROID__
+
+	/*handle the android inputs*/
+	androidInput(incomingEvent);
+
+#elif _WIN32	
+
+	/*handle the windows inputs*/
+	windowsInput(incomingEvent);
+
+#endif
+}
+
+/**************************************************************************************************************/
+
+/*handles windows inputs*/
+void Player::windowsInput(SDL_Event& incomingEvent)
+{
 	switch (incomingEvent.type)
 	{
 	case SDL_KEYDOWN:
@@ -36,7 +54,7 @@ void Player::input(SDL_Event incomingEvent)
 		{
 		case SDLK_w: /*If W/Up is pressed, set the up command to true*/
 		case SDLK_UP:
-			
+
 			up = true;
 			break;
 
@@ -90,6 +108,13 @@ void Player::input(SDL_Event incomingEvent)
 		}
 		break;
 	}
+}
+
+/**************************************************************************************************************/
+
+/*handles android inputs*/
+void Player::androidInput(SDL_Event& incomingEvent)
+{
 }
 
 /**************************************************************************************************************/

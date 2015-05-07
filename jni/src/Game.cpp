@@ -99,11 +99,6 @@ bool Game::input()
 			SDL_Log("Exiting Main Loop");
 			return false;
 			break;
-
-		case SDL_MOUSEBUTTONDOWN:
-			if (incomingEvent.button.button == SDL_TOUCH_MOUSEID || incomingEvent.button.button == SDL_BUTTON_LEFT)
-				SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, "Touch/Click");
-			break;
 		}
 
 		/*handle the player input*/
@@ -168,6 +163,16 @@ bool Game::androidInput(SDL_Event& incomingEvent)
 
 			SDL_Log("Exiting Main Loop");
 			return false;
+			break;
+
+		case SDL_MOUSEBUTTONDOWN: /*If the mouse is pressed*/
+
+			/*if the left mouse button go to pause*/
+			if (incomingEvent.button.button == SDL_BUTTON_LEFT)
+			{
+				/*add the pause state*/
+				stateManager->addState(new PauseState(stateManager, renderer, screenWidth, screenHeight, music));
+			}
 			break;
 		}
 		break;
