@@ -4,7 +4,7 @@
 
 /*Constructs a Player object.*/
 Player::Player(JAM_Texture* sprite, float x, float y, float width, float height, JAM_Vec2 velocity, float screenWidth, 
-	float screenHeight) 
+	float screenHeight, JAM_ArrowPad* arrowPad) 
 	: JAM_Entity(sprite, x, y, width, height)
 {
 	/*initialise the velocity of the background*/
@@ -14,6 +14,8 @@ Player::Player(JAM_Texture* sprite, float x, float y, float width, float height,
 	/*initialise the screen dimensions*/
 	this->screenWidth = screenWidth;
 	this->screenHeight = screenHeight;
+	/*initialise the arrow pad*/
+	this->arrowPad = arrowPad;
 }
 
 /**************************************************************************************************************/
@@ -115,6 +117,11 @@ void Player::windowsInput(SDL_Event& incomingEvent)
 /*handles android inputs*/
 void Player::androidInput(SDL_Event& incomingEvent)
 {
+	/*update the commands from the arrow pad*/
+	up = arrowPad->getUp();
+	down = arrowPad->getDown();
+	left = arrowPad->getLeft();
+	right = arrowPad->getRight();
 }
 
 /**************************************************************************************************************/

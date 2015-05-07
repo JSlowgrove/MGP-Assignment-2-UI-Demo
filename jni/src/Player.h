@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include "JAM/Entity.h"
+#include "ArrowPad.h"
 
 /**
 @brief Creates a Player object that inherits Entity.
@@ -23,6 +24,8 @@ private:
 	float screenWidth;
 	/**The height of the screen*/
 	float screenHeight;
+	/**A pointer to the arrowPad*/
+	JAM_ArrowPad* arrowPad;
 
 	/**
 	Handles the Windows Game input.
@@ -47,8 +50,10 @@ public:
 	@param velocity The velocity of the Player.
 	@param screenWidth The width of the screen.
 	@param screenHeight The height of the screen.
+	@param arrowPad A pointer to the arrow pad.
 	*/
-	Player(JAM_Texture* sprite, float x, float y, float width, float height, JAM_Vec2 velocity, float screenWidth, float screenHeight);
+	Player(JAM_Texture* sprite, float x, float y, float width, float height, JAM_Vec2 velocity, 
+		float screenWidth, float screenHeight, JAM_ArrowPad* arrowPad);
 
 	/**
 	Destructs an Player object.

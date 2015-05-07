@@ -11,6 +11,7 @@
 #include "JAM/ParticleEffect.h"
 #include "JAM/CollisionDetection.h"
 #include "JAM/Button.h"
+#include "ArrowPad.h"
 #include "Background.h"
 #include "Player.h"
 #include "ForceField.h"
@@ -45,6 +46,8 @@ private:
 	JAM_Text* info;
 	/**The info Button*/
 	JAM_Button* button;
+	/**The arrow pad*/
+	JAM_ArrowPad* arrowPad;
 
 	/**
 	Handles the Windows Game input.

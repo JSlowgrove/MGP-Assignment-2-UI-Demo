@@ -14,6 +14,8 @@ private:
 	JAM_Text* text;
 	/**The size of the border from the button and the text*/
 	float border;
+	/**A boolean for the state of the button*/
+	bool state;
 
 public:
 	/**

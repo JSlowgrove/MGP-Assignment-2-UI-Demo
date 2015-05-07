@@ -11,6 +11,9 @@ JAM_Button::JAM_Button(JAM_Texture* sprite, float x, float y, float width, float
 
 	/*initialise the border*/
 	border = 0.0f;
+
+	/*initialise state*/
+	state = false;
 }
 
 /**************************************************************************************************************/
@@ -43,6 +46,9 @@ JAM_Button::JAM_Button(JAM_Texture* sprite, float x, float y, std::string messag
 	
 	/*set the dimensions of the button*/
 	setDimensions(size);
+
+	/*initialise state*/
+	state = false;
 }
 
 /**************************************************************************************************************/
@@ -88,14 +94,24 @@ bool JAM_Button::input(SDL_Event& incomingEvent)
 			if (overButton)
 			{
 				/*the button is pressed*/
-				return true;
+				state = true;
 			}
+		}
+		break;
+
+	case SDL_MOUSEBUTTONUP: /*If released*/
+
+		/*if the left mouse button*/
+		if (incomingEvent.button.button == SDL_BUTTON_LEFT)
+		{
+			/*the button is not pressed*/
+			state = false;
 		}
 		break;
 	}
 
-	/*the button was not pressed*/
-	return false;
+	/*return the state*/
+	return state;
 }
 
 /**************************************************************************************************************/

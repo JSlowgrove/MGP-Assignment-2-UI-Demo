@@ -89,6 +89,7 @@ bool PauseState::windowsInput(SDL_Event& incomingEvent)
 
 			/*return to the game*/
 			stateManager->removeLastState();
+			return true;
 			break;
 		}
 		break;
@@ -121,6 +122,7 @@ bool PauseState::androidInput(SDL_Event& incomingEvent)
 	{
 		/*return to the game*/
 		stateManager->removeLastState();
+		return true;
 	}
 	return true;
 }

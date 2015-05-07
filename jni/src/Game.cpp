@@ -13,6 +13,10 @@ Game::Game(JAM_StateManager * stateManager, SDL_Renderer* renderer, int screenWi
 	backgroundStars = new JAM_Texture("img/backgroundStars.png", renderer);
 	forceField = new JAM_Texture("img/forceField.png", renderer);
 
+	/*initialise the arrow pad*/
+	arrowPad = new JAM_ArrowPad(JAM_Utilities::scaleNumber(10.0f, screenHeight), screenHeight - JAM_Utilities::scaleNumber(210.0f, screenHeight),
+		JAM_Utilities::scaleNumber(200.0f, screenHeight), JAM_Utilities::scaleNumber(200.0f, screenHeight), renderer);
+
 	/*initialise the backgrounds*/
 	starsA = new Background(backgroundStars, JAM_Utilities::scaleNumber(0.0f, screenHeight), JAM_Utilities::scaleNumber(0.0f, screenHeight), 
 		(float)screenWidth, (float)screenHeight, JAM_Utilities::scaleNumber(20.0f, screenHeight));
@@ -23,7 +27,7 @@ Game::Game(JAM_StateManager * stateManager, SDL_Renderer* renderer, int screenWi
 	player = new Player(alienDude, 
 		JAM_Utilities::scaleNumber(100.0f, screenHeight), JAM_Utilities::scaleNumber(100.0f, screenHeight),
 		JAM_Utilities::scaleNumber(64.0f, screenHeight), JAM_Utilities::scaleNumber(64.0f, screenHeight), 
-		JAM_Utilities::scaleVector(JAM_Vec2(100.0f, 100.0f), screenHeight), (float)screenWidth, (float)screenHeight);
+		JAM_Utilities::scaleVector(JAM_Vec2(100.0f, 100.0f), screenHeight), (float)screenWidth, (float)screenHeight, arrowPad);
 
 	/*initialise the particle effect for the player*/
 	particleEffects.push_back(new JAM_ParticleEffect(player->getPosition(), true, renderer, 255, 0, 255, screenHeight));
@@ -94,6 +98,7 @@ Game::~Game()
 	delete player;
 	delete info;
 	delete button;
+	delete arrowPad;
 	for (auto field : forceFields)
 	{
 		delete field;
@@ -121,6 +126,9 @@ bool Game::input()
 			return false;
 			break;
 		}
+		
+		/*handle the arrow pad input*/
+		arrowPad->input(incomingEvent);
 
 		/*handle the player input*/
 		player->input(incomingEvent);
@@ -294,6 +302,9 @@ void Game::draw()
 	/*draw the button*/
 	button->draw(renderer);
 	button->drawText(renderer);
+
+	/*draw the arrow pad*/
+	arrowPad->draw(renderer);
 
 #elif _WIN32	
 
