@@ -34,6 +34,7 @@ GameOver::~GameOver()
 	/*delete pointers*/
 	delete background;
 	delete info;
+	delete button;
 }
 
 /**************************************************************************************************************/

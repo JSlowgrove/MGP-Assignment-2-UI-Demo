@@ -59,6 +59,18 @@ Game::Game(JAM_StateManager * stateManager, SDL_Renderer* renderer, int screenWi
 	/*initialise the bool for the first loop*/
 	initalLoop = true;
 
+	/*initialise the text*/
+	info = new JAM_Text("Hit SPACE to pause", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(25.0f, screenHeight),
+		renderer, 255, 255, 255);
+
+	/*initialise the button*/
+	button = new JAM_Button(new JAM_Texture("img/buttonBackground.png", renderer), JAM_Utilities::scaleNumber(10.0f, screenHeight),
+		JAM_Utilities::scaleNumber(10.0f, screenHeight),
+		"Press to pause", "font/Underdog_tt_hinted.ttf", (int)JAM_Utilities::scaleNumber(25.0f, screenHeight),
+		255, 255, 255, renderer,
+		JAM_Utilities::scaleNumber(10.0f, screenHeight),
+		JAM_Utilities::scaleNumber(100.0f, screenHeight), JAM_Utilities::scaleNumber(50.0f, screenHeight));
+
 	/*initialise the music*/
 	music = new JAM_Audio("aud/Cool Hard Facts.ogg", true);
 	music->startAudio();
@@ -80,6 +92,8 @@ Game::~Game()
 	delete starsA;
 	delete starsB;
 	delete player;
+	delete info;
+	delete button;
 	for (auto field : forceFields)
 	{
 		delete field;
@@ -171,18 +185,15 @@ bool Game::androidInput(SDL_Event& incomingEvent)
 			SDL_Log("Exiting Main Loop");
 			return false;
 			break;
-
-		case SDL_MOUSEBUTTONDOWN: /*If the mouse is pressed*/
-
-			/*if the left mouse button go to pause*/
-			if (incomingEvent.button.button == SDL_BUTTON_LEFT)
-			{
-				/*add the pause state*/
-				stateManager->addState(new PauseState(stateManager, renderer, screenWidth, screenHeight, music));
-			}
-			break;
 		}
 		break;
+	}
+
+	/*if the button is pressed go to the pause screen*/
+	if (button->input(incomingEvent))
+	{
+		/*add the pause state*/
+		stateManager->addState(new PauseState(stateManager, renderer, screenWidth, screenHeight, music));
 	}
 	return true;
 }
@@ -277,4 +288,17 @@ void Game::draw()
 
 	/*draw the player*/
 	player->draw(renderer);
+
+#ifdef __ANDROID__
+
+	/*draw the button*/
+	button->draw(renderer);
+	button->drawText(renderer);
+
+#elif _WIN32	
+
+	/*draw the text*/
+	info->pushToScreen((int)JAM_Utilities::scaleNumber(10.0f, screenHeight), (int)JAM_Utilities::scaleNumber(10.0f, screenHeight));
+
+#endif
 }

@@ -10,6 +10,7 @@
 #include "JAM/Text.h"
 #include "JAM/ParticleEffect.h"
 #include "JAM/CollisionDetection.h"
+#include "JAM/Button.h"
 #include "Background.h"
 #include "Player.h"
 #include "ForceField.h"
@@ -40,6 +41,10 @@ private:
 	JAM_Audio* music;
 	/**A bool for the initial loop*/
 	bool initalLoop;
+	/**The info Text*/
+	JAM_Text* info;
+	/**The info Button*/
+	JAM_Button* button;
 
 	/**
 	Handles the Windows Game input.

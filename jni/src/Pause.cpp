@@ -33,6 +33,7 @@ PauseState::~PauseState()
 	/*delete pointers*/
 	delete background;
 	delete info;
+	delete button;
 }
 
 /**************************************************************************************************************/
