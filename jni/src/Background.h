@@ -5,16 +5,17 @@
 
 /**
 @brief Creates a Background object that inherits Entity.
+@author Jamie Slowgrove
 */
 class Background : public JAM_Entity
 {
 private:
-	/**The velocity of the Background*/
+	/**The velocity of the Background.*/
 	float velocity;
 
 public:
 	/**
-	Constructs a Background object.
+	Constructs the Background object.
 	@param sprite A pointer to the objects Texture.
 	@param x The x position of the Background.
 	@param y The y position of the Background.
@@ -25,7 +26,7 @@ public:
 	Background(JAM_Texture* sprite, float x, float y, float width, float height, float velocity);
 
 	/**
-	Destructs a Background object.
+	Destructs the Background object.
 	*/
 	~Background();
 

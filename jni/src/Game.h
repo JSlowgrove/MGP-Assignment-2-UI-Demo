@@ -18,35 +18,36 @@
 
 /**
 @brief Creates an Game object that inherits State and runs the Game.
+@author Jamie Slowgrove
 */
 class Game : public JAM_State
 {
 private:
-	/**The alien Texture*/
+	/**The alien Texture.*/
 	JAM_Texture* alienDude;
-	/**The background stars Texture*/
+	/**The background stars Texture.*/
 	JAM_Texture* backgroundStars;
-	/**The force field Texture*/
+	/**The force field Texture.*/
 	JAM_Texture* forceField;
-	/**The first stars background*/
+	/**The first stars background.*/
 	Background* starsA;
-	/**The second stars background*/
+	/**The second stars background.*/
 	Background* starsB;
-	/**The Player Entity*/
+	/**The Player Entity.*/
 	Player* player;
-	/**A Vector for the ParticleEffect*/
+	/**A Vector for the ParticleEffect.*/
 	std::vector<JAM_ParticleEffect*> particleEffects;
-	/**A Vector for the ForceFields*/
+	/**A Vector for the ForceFields.*/
 	std::vector<ForceField*> forceFields;
-	/**A pointer to the background music*/
+	/**A pointer to the background music.*/
 	JAM_Audio* music;
-	/**A number for the initial loops left*/
+	/**A number for the initial loops left.*/
 	int initalLoops;
-	/**The info Text*/
+	/**The info Text.*/
 	JAM_Text* info;
-	/**The info Button*/
+	/**The info Button.*/
 	JAM_Button* button;
-	/**The arrow pad*/
+	/**The arrow pad.*/
 	JAM_ArrowPad* arrowPad;
 
 	/**
@@ -65,7 +66,7 @@ private:
 
 public:
 	/**
-	Constructs a Game object.
+	Constructs the Game object.
 	@param stateManager A pointer to the StateManager.
 	@param renderer A pointer to the renderer.
 	@param screenWidth The screen width.
@@ -74,7 +75,7 @@ public:
 	Game(JAM_StateManager* stateManager, SDL_Renderer* renderer, int screenWidth, int screenHeight);
 
 	/**
-	Destructs an Game object.
+	Destructs the Game object.
 	*/
 	~Game();
 

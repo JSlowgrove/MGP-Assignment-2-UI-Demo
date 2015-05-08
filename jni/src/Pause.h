@@ -12,28 +12,29 @@
 
 /**
 @brief Creates an pause object that inherits State and runs the pause state.
+@author Jamie Slowgrove
 */
 class PauseState : public JAM_State
 {
 private:
-	/**The background Texture*/
+	/**The background Texture.*/
 	JAM_Texture* background;
-	/**The info Text*/
+	/**The info Text.*/
 	JAM_Text* info;
-	/**The info Button*/
+	/**The info Button.*/
 	JAM_Button* button;
-	/**A pointer to the background music*/
+	/**A pointer to the background music.*/
 	JAM_Audio* music;
 
 	/**
-	Handles the Windows Game input.
+	Handles the Windows PauseState input.
 	@param incomingEvent A reference to the incoming SDL event.
 	@returns If false then quit the Game State.
 	*/
 	bool windowsInput(SDL_Event& incomingEvent);
 
 	/**
-	Handles the Android Game input.
+	Handles the Android PauseState input.
 	@param incomingEvent A reference to the incoming SDL event.
 	@returns If false then quit the Game State.
 	*/
@@ -41,7 +42,7 @@ private:
 
 public:
 	/**
-	Constructs a PauseState object.
+	Constructs the PauseState object.
 	@param stateManager A pointer to the StateManager.
 	@param renderer A pointer to the renderer.
 	@param screenWidth The screen width.
@@ -50,18 +51,18 @@ public:
 	PauseState(JAM_StateManager* stateManager, SDL_Renderer* renderer, int screenWidth, int screenHeight, JAM_Audio* music);
 
 	/**
-	Destructs an PauseState object.
+	Destructs the PauseState object.
 	*/
 	~PauseState();
 
 	/**
-	Handles the Game input.
+	Handles the PauseState input.
 	@returns If false then quit the pause State.
 	*/
 	bool input();
 
 	/**
-	A function to update the pause state to allow the Game to run.
+	A function to update the pause state to allow the PauseState to run.
 	@param dt The delta time.
 	*/
 	void update(float dt);

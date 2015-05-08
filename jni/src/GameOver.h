@@ -12,28 +12,29 @@
 
 /**
 @brief Creates a GameOver object that inherits State and runs the GameOver state.
+@author Jamie Slowgrove
 */
 class GameOver : public JAM_State
 {
 private:
-	/**The background Texture*/
+	/**The background Texture.*/
 	JAM_Texture* background;
-	/**The info Text*/
+	/**The info Text.*/
 	JAM_Text* info;
-	/**The info Button*/
+	/**The info Button.*/
 	JAM_Button* button;
-	/**A pointer to the background music*/
+	/**A pointer to the background music.*/
 	JAM_Audio* music;
 
 	/**
-	Handles the Windows Game input.
+	Handles the Windows GameOver input.
 	@param incomingEvent A reference to the incoming SDL event.
 	@returns If false then quit the Game State.
 	*/
 	bool windowsInput(SDL_Event& incomingEvent);
 
 	/**
-	Handles the Android Game input.
+	Handles the Android GameOver input.
 	@param incomingEvent A reference to the incoming SDL event.
 	@returns If false then quit the Game State.
 	*/
@@ -41,7 +42,7 @@ private:
 
 public:
 	/**
-	Constructs a GameOver object.
+	Constructs the GameOver object.
 	@param stateManager A pointer to the StateManager.
 	@param renderer A pointer to the renderer.
 	@param screenWidth The screen width.
@@ -50,7 +51,7 @@ public:
 	GameOver(JAM_StateManager* stateManager, SDL_Renderer* renderer, int screenWidth, int screenHeight, JAM_Audio* music);
 
 	/**
-	Destructs an GameOver object.
+	Destructs the GameOver object.
 	*/
 	~GameOver();
 

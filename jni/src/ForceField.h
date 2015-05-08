@@ -4,21 +4,22 @@
 #include "JAM/Entity.h"
 
 /**
-@brief Creates a Background object that inherits Entity.
+@brief Creates a ForceField object that inherits Entity.
+@author Jamie Slowgrove
 */
 class ForceField : public JAM_Entity
 {
 private:
-	/**The velocity of the ForceField*/
+	/**The velocity of the ForceField.*/
 	float velocity;
-	/**The width of the screen*/
+	/**The width of the screen.*/
 	float screenWidth;
-	/**The height of the screen*/
+	/**The height of the screen.*/
 	float screenHeight;
 
 public:
 	/**
-	Constructs a ForceField object.
+	Constructs the ForceField object.
 	@param sprite A pointer to the objects Texture.
 	@param x The x position of the ForceField.
 	@param y The y position of the ForceField.
@@ -31,7 +32,7 @@ public:
 	ForceField(JAM_Texture* sprite, float x, float y, float width, float height, float velocity, float screenWidth, float screenHeight);
 
 	/**
-	Destructs a ForceField object.
+	Destructs the ForceField object.
 	*/
 	~ForceField();
 

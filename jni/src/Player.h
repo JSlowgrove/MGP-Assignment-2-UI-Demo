@@ -6,42 +6,43 @@
 
 /**
 @brief Creates a Player object that inherits Entity.
+@author Jamie Slowgrove
 */
 class Player : public JAM_Entity
 {
 private:
-	/**The velocity of the Player*/
+	/**The velocity of the Player.*/
 	JAM_Vec2 velocity;
-	/**The up user command for the Player*/
+	/**The up user command for the Player.*/
 	bool up;
-	/**The down user command for the Player*/
+	/**The down user command for the Player.*/
 	bool down;
-	/**The left user command for the Player*/
+	/**The left user command for the Player.*/
 	bool left;
-	/**The right user command for the Player*/
+	/**The right user command for the Player.*/
 	bool right;
-	/**The width of the screen*/
+	/**The width of the screen.*/
 	float screenWidth;
-	/**The height of the screen*/
+	/**The height of the screen.*/
 	float screenHeight;
-	/**A pointer to the arrowPad*/
+	/**A pointer to the arrowPad.*/
 	JAM_ArrowPad* arrowPad;
 
 	/**
-	Handles the Windows Game input.
+	Handles the Windows Player input.
 	@param incomingEvent A reference to the incoming SDL event.
 	*/
 	void windowsInput(SDL_Event& incomingEvent);
 
 	/**
-	Handles the Android Game input.
+	Handles the Android Player input.
 	@param incomingEvent A reference to the incoming SDL event.
 	*/
 	void androidInput(SDL_Event& incomingEvent);
 
 public:
 	/**
-	Constructs an Player object.
+	Constructs the Player object.
 	@param sprite A pointer to the objects Texture.
 	@param x The x position of the Player.
 	@param y The y position of the Player.
@@ -56,7 +57,7 @@ public:
 		float screenWidth, float screenHeight, JAM_ArrowPad* arrowPad);
 
 	/**
-	Destructs an Player object.
+	Destructs the Player object.
 	*/
 	~Player();
 
@@ -67,7 +68,7 @@ public:
 	void input(SDL_Event incomingEvent);
 
 	/**
-	A function that updates the Background.
+	A function that updates the Player.
 	@param dt The delta time.
 	*/
 	void update(float dt);
